@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <title>Frontend Mentor | Room homepage</title>
-
-  <!-- Include Bootstrap CSS (Update with the latest version) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <title>Frontend Mentor | Room Homepage</title>
+  <!-- Include Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -36,8 +35,8 @@
 
   <!-- Slides -->
   <div class="container">
-    <div class="row">
-      <!-- Slide 1 -->
+    <!-- Slide 1 -->
+    <div class="row" id="slide1" style="display: none">
       <div class="col-lg-8">
         <img src="images/desktop-image-hero-1.jpg" alt="Slide 1 Image">
       </div>
@@ -48,8 +47,8 @@
       </div>
     </div>
 
-    <!-- Slide 2 -->
-    <div class="row">
+    <!-- Slide 2 (Hidden) -->
+    <div class="row" id="slide2" style="display: none">
       <div class="col-lg-8">
         <img src="images/desktop-image-hero-2.jpg" alt="Slide 2 Image">
       </div>
@@ -60,8 +59,8 @@
       </div>
     </div>
 
-    <!-- Slide 3 -->
-    <div class="row">
+    <!-- Slide 3 (Hidden) -->
+    <div class="row" id="slide3" style="display: none">
       <div class="col-lg-8">
         <img src="images/desktop-image-hero-3.jpg" alt="Slide 3 Image">
       </div>
@@ -69,6 +68,14 @@
         <h2>Manufactured with the best materials</h2>
         <p>Our modern furniture store provides a high level of quality. Our company has invested in advanced technology to ensure that every product is made as perfect and as consistent as possible. With three decades of experience in this industry, we understand what customers want for their home and office.</p>
         <a class="btn btn-primary" href="#">Shop now</a>
+      </div>
+    </div>
+
+    <!-- Slide Navigation Controls -->
+    <div class="row">
+      <div class="col-lg-12 text-center mt-3">
+        <button id="prevSlide" class="btn btn-secondary">Previous</button>
+        <button id="nextSlide" class="btn btn-secondary ml-2">Next</button>
       </div>
     </div>
 
@@ -87,13 +94,43 @@
     </div>
   </div>
 
- <!-- Include Bootstrap JS and jQuery (Update with the latest version) -->
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+  
+  
+</div>
 
- <div class="attribution">
-   Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-   Coded by <a href="#">Your Name Here</a>.
- </div>
+<div class="attribution">
+  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+  Coded by <a href="#">Your Name Here</a>.
+</div>
+
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let currentSlide = 1;
+
+    function showSlide(slideNumber) {
+      document.getElementById('slide1').style.display = 'none';
+      document.getElementById('slide2').style.display = 'none';
+      document.getElementById('slide3').style.display = 'none';
+      document.getElementById(`slide${slideNumber}`).style.display = '';
+    }
+
+    document.getElementById('nextSlide').addEventListener('click', function () {
+      currentSlide = currentSlide < 3 ? currentSlide + 1 : 1;
+      showSlide(currentSlide);
+    });
+
+    document.getElementById('prevSlide').addEventListener('click', function () {
+      currentSlide = currentSlide > 1 ? currentSlide - 1 : 3;
+      showSlide(currentSlide);
+    });
+
+    // Show the initial slide (Slide 1)
+    showSlide(currentSlide);
+  });
+</script>
 </body>
 </html>
